@@ -2,6 +2,9 @@ USN:2BA23CS166
 Nmae: Swati Biradar
 Section: C
 
+Problem Details:
+
+
 
 # Java-Project---166
 Java Assignment
