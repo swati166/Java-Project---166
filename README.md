@@ -1,8 +1,7 @@
 USN:2BA23CS166
 Nmae: Swati Biradar
 Section: C
-
-Problem Details:
+Problem Details:Build a multiplication table generator. An html form accepts a number from the user. the  servlet generates and displays the multiplication table for that number from 1 to 10 in a neat html table format.
 
 
 
