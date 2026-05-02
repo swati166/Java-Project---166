@@ -1,0 +1,69 @@
+package com.example.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/calculate")
+public class CalculatorServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        try {
+            double num1 = Double.parseDouble(request.getParameter("num1"));
+            double num2 = Double.parseDouble(request.getParameter("num2"));
+            String op = request.getParameter("op");
+
+            double result = 0;
+            String symbol = "";
+
+            switch (op) {
+                case "add":
+                    result = num1 + num2;
+                    symbol = "+";
+                    break;
+
+                case "sub":
+                    result = num1 - num2;
+                    symbol = "-";
+                    break;
+
+                case "mul":
+                    result = num1 * num2;
+                    symbol = "*";
+                    break;
+
+                case "div":
+                    if (num2 == 0) {
+                        out.println("<h3>Cannot divide by zero</h3>");
+                        return;
+                    }
+                    result = num1 / num2;
+                    symbol = "/";
+                    break;
+
+                default:
+                    out.println("<h3>Invalid operation</h3>");
+                    return;
+            }
+
+            out.println("<h2>Calculator Result</h2>");
+            out.println("<p>" + num1 + " " + symbol + " " + num2 + " = " + result + "</p>");
+
+        } catch (Exception e) {
+            out.println("<h3>Error: Please provide valid numbers</h3>");
+        }
+    }
+}
